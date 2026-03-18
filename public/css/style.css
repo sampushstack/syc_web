@@ -47,6 +47,27 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   --text-2:       #787896;
   --text-3:       #36364E;
 
+  --transition-theme: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Light mode tokens */
+:root.light {
+  --bg:           #F5F5F0;
+  --surface:      #FFFFFF;
+  --surface-2:    #ECECEA;
+  --border:       rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(0, 150, 80, 0.35);
+
+  --accent:       #00A860;
+  --accent-dim:   rgba(0, 168, 96, 0.1);
+  --accent-glow:  rgba(0, 168, 96, 0.2);
+  --accent-2:     #6B46C1;
+  --accent-2-dim: rgba(107, 70, 193, 0.1);
+
+  --text:         #111118;
+  --text-2:       #5A5A72;
+  --text-3:       #A0A0B0;
+
   --radius-sm:  8px;
   --radius:     16px;
   --radius-lg:  22px;
@@ -130,6 +151,95 @@ p {
   font-size: 1rem;
   line-height: 1.78;
   font-weight: 400;
+}
+
+/* ============================================
+   THEME TOGGLE
+   ============================================ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  background: transparent;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* Show sun in dark mode, moon in light mode */
+.theme-toggle__moon { display: none; }
+.theme-toggle__sun  { display: block; }
+
+:root.light .theme-toggle__sun  { display: none; }
+:root.light .theme-toggle__moon { display: block; }
+
+/* ============================================
+   LIGHT MODE — targeted overrides
+   ============================================ */
+:root.light body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+:root.light .nav.scrolled {
+  background: rgba(245, 245, 240, 0.85);
+  border-bottom-color: var(--border);
+}
+
+:root.light .hero__aurora {
+  background:
+    radial-gradient(ellipse 85% 70% at 10% 65%, rgba(0, 168, 96, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 75% at 88% 20%, rgba(107, 70, 193, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 45% at 60% 88%, rgba(0, 168, 96, 0.04) 0%, transparent 50%);
+}
+
+:root.light .hero__grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+:root.light .btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+:root.light .btn--primary:hover {
+  background: #00C070;
+}
+
+:root.light .stat__num {
+  text-shadow: 0 0 30px rgba(0, 168, 96, 0.2);
+}
+
+:root.light .stats::before {
+  background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(0, 168, 96, 0.04) 0%, transparent 70%);
+}
+
+:root.light .contact__card::before {
+  background:
+    radial-gradient(ellipse 65% 55% at 50% 105%, rgba(0, 168, 96, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 85% 5%, rgba(107, 70, 193, 0.04) 0%, transparent 50%);
+}
+
+:root.light .about__accent-line {
+  background: linear-gradient(to right, var(--accent), var(--accent-2));
+}
+
+:root.light .cursor-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 168, 96, 0.04) 0%,
+    transparent 65%
+  );
 }
 
 /* ============================================

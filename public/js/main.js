@@ -1,4 +1,18 @@
 // ============================================
+// THEME TOGGLE — persists to localStorage
+// ============================================
+const root         = document.documentElement;
+const themeToggle  = document.getElementById('themeToggle');
+const savedTheme   = localStorage.getItem('theme');
+
+if (savedTheme === 'light') root.classList.add('light');
+
+themeToggle?.addEventListener('click', () => {
+  const isLight = root.classList.toggle('light');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+
+// ============================================
 // CURSOR GLOW
 // ============================================
 document.addEventListener('mousemove', (e) => {
